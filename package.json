@@ -5,10 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "build": "tsc",
+    "start": "node dist/app.js",
     "dev": "nodemon src/app.ts",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
-    "prepare": "husky install"
+    "lint:fix": "eslint --fix ."
   },
   "keywords": [],
   "author": "",

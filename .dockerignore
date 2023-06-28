@@ -1,0 +1,7 @@
+.git
+.gitignore
+.husky
+.eslintrc.json
+.prettierrc
+*Dockerfile*
+node_modules
