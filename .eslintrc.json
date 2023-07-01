@@ -16,5 +16,8 @@
     "project": "./tsconfig.json"
   },
   "plugins": ["@typescript-eslint", "prettier"],
-  "rules": {}
+  "rules": {
+    "no-unused-vars": "warn",
+    "@typescript-eslint/no-unused-vars": "warn"
+  }
 }
