@@ -1,7 +1,7 @@
 import express from "express";
 import type { Request, Response } from "express";
 
-import errorMiddleware from "./middlewares/error-middleware.js";
+import errorMiddleware from "./middlewares/errorMiddleware.js";
 
 const app = express();
 

@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
 
-import HttpError from "../utils/http-error.js";
+import HttpError from "../utils/HttpError.js";
 
 function errorMiddleware(
   err: HttpError,
