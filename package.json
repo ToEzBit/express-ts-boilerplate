@@ -9,7 +9,8 @@
     "start": "node dist/app.js",
     "dev": "nodemon src/app.ts",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "lint:fix": "eslint --fix .",
+    "prepare": "if [ \"$NODE_ENV\" != \"production\" ]; then husky install; fi"
   },
   "keywords": [],
   "author": "",
