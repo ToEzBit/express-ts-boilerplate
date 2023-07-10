@@ -32,13 +32,13 @@ type ErrorCodesType = keyof typeof ERROR_CODES;
 class HttpError extends Error {
   public readonly httpStatusCode: number;
 
-  public readonly errorMessage: string;
+  public readonly message: string;
 
   constructor(opts: { code: ErrorCodesType; message?: string }) {
-    const errorMessage = opts.message ?? opts.code;
+    const message = opts.message ?? opts.code;
     super();
     this.httpStatusCode = ERROR_CODES[opts.code];
-    this.errorMessage = errorMessage;
+    this.message = message;
   }
 }
 

@@ -1,13 +1,16 @@
 import express from "express";
-import type { Request, Response } from "express";
+import bodyParser from "body-parser";
+
+import fooRoutes from "./api/routes/fooRoutes.js";
 
 import errorMiddleware from "./middlewares/errorMiddleware.js";
 
 const app = express();
 
-app.get("/", (req: Request, res: Response) => {
-  res.json({ message: "success" });
-});
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.use("/foo", fooRoutes);
 
 app.use(errorMiddleware);
 
