@@ -1,4 +1,4 @@
-const ERROR_CODES = {
+export const ERROR_CODES = {
   BAD_REQUEST: 400,
   INTERNAL_SERVER_ERROR: 500,
   UNAUTHORIZED: 401,
@@ -14,7 +14,7 @@ const ERROR_CODES = {
   CLIENT_CLOSED_REQUEST: 499,
 } as const;
 
-type ErrorCodesType = keyof typeof ERROR_CODES;
+export type ErrorCodesType = keyof typeof ERROR_CODES;
 
 /**
  * Represents an HTTP error that can be thrown to indicate a specific HTTP status code.

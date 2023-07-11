@@ -7,7 +7,7 @@
     "outDir": "dist" /* Specify an output folder for all emitted files. */,
     "esModuleInterop": true
   },
-  "include": ["src/**/*", "tests/**/*", "jest.config.ts"],
+  "include": ["src/**/*"],
   "ts-node": {
     "esm": true,
     "compilerOptions": {
