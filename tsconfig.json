@@ -1,17 +1,25 @@
 {
   "compilerOptions": {
-    "module": "NodeNext" /* Specify what module code is generated. */ /* Specify the root folder within your source files. */,
-    "moduleResolution": "NodeNext" /* Specify how TypeScript looks up a file from a given module specifier. */,
-    "target": "ES2020" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
-    "sourceMap": true /* Create source map files for emitted JavaScript files. */,
-    "outDir": "dist" /* Specify an output folder for all emitted files. */,
-    "esModuleInterop": true
+    "target": "ES6",
+    "module": "CommonJS",
+    "baseUrl": ".",
+    "rootDir": "./src",
+    "paths": {
+      "@modules/*": ["./src/modules/*"],
+      "@common/*": ["./src/common/*"],
+      "@src/*": ["./src/*"]
+    },
+    "moduleResolution": "Node",
+    "outDir": "build",
+    "importsNotUsedAsValues": "remove",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "skipLibCheck": true,
+    "ignoreDeprecations": "5.0"
   },
-  "include": ["src/**/*", "tests/**/*", "jest.config.ts"],
-  "ts-node": {
-    "esm": true,
-    "compilerOptions": {
-      "module": "NodeNext"
-    }
-  }
+  "exclude": ["node_modules"],
+  "extends": "@tsconfig/node20/tsconfig.json",
+  "include": ["src/**/*.ts"]
 }
