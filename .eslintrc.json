@@ -1,24 +1,44 @@
 {
+  "root": true,
   "env": {
-    "browser": true,
-    "es2021": true
+    "es2021": true,
+    "node": true
   },
   "extends": [
-    "airbnb-base",
-    "airbnb-typescript/base",
-    "plugin:import/typescript",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:prettier/recommended"
   ],
+  "ignorePatterns": ["build", ".eslintrc.json"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
-    "sourceType": "module",
-    "project": "./tsconfig.json"
+    "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "prettier"],
-  // "ignorePatterns": ["**/tests/**/*.ts"],
+  "plugins": ["simple-import-sort", "@typescript-eslint"],
   "rules": {
-    "no-unused-vars": "warn",
-    "@typescript-eslint/no-unused-vars": "warn"
+    "@typescript-eslint/no-explicit-any": "off",
+    "no-console": "warn",
+    "simple-import-sort/exports": "error",
+    "prettier/prettier": ["error", {}, { "usePrettierrc": true }],
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          // Node.js builtins and third-party packages
+          ["^\\u0000"],
+          ["^react", "^@?\\w"],
+          ["^"], // <-- to match regular imports (not starting with a special character)
+
+          // Your internal path aliases
+          ["^(@modules|@common|@src)(/.*|$)"],
+
+          // Relative imports
+          ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"]
+        ]
+      }
+    ]
   }
 }
