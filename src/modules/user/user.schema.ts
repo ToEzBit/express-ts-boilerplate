@@ -3,7 +3,7 @@ import { z } from "zod";
 
 const base = z.object({
   id: z.number(),
-  name: z.string().max(4),
+  name: z.string(),
   email: z.string().email({}),
   age: z.number(),
   createdAt: z.date(),
@@ -12,7 +12,7 @@ const base = z.object({
 
 const create = z.object({
   id: z.number().default(Math.random()),
-  name: z.string().max(4),
+  name: z.string(),
   email: z.string().email({}),
   age: z.number(),
   createdAt: z.date().default(() => dayjs().toDate()),

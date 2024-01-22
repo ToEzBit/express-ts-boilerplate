@@ -9,7 +9,7 @@ const SUCCESS_CODE = {
 
 export type SuccessCodesType = keyof typeof SUCCESS_CODE;
 
-type SendHttpResponse<T> = {
+export type SendHttpResponse<T> = {
   code: SuccessCodesType;
   payload?: T | null;
   res: Response;
