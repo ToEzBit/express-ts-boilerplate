@@ -1,11 +1,11 @@
 import express, { Router } from "express";
 
-import * as controller from "@modules/user/user.controller";
+import { userController } from "@modules/user/user.controller";
 
 const router: Router = express.Router();
 
-router.get("/", controller.getAllUsers);
-router.get("/:id", controller.getUserById);
-router.post("/", controller.createUser);
+router.get("/", userController.getAllUsers);
+router.get("/:id", userController.getUserById);
+router.post("/", userController.createUser);
 
 export const userRouter: Router = router;

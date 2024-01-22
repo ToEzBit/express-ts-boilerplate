@@ -3,7 +3,7 @@ import { RequestHandler } from "express";
 import { sendHttpResponse } from "@common/utils/send-http-response";
 import { logger } from "@src/server";
 
-export const getHealthCheck: RequestHandler = async (_req, res, next) => {
+const getHealthCheck: RequestHandler = async (_req, res, next) => {
   try {
     sendHttpResponse({
       code: "OK",
@@ -14,4 +14,8 @@ export const getHealthCheck: RequestHandler = async (_req, res, next) => {
     logger.error(`ERROR_HEALTH_CHECK_CONTROLLER = ${error}`);
     next(error);
   }
+};
+
+export const healthCheckController = {
+  getHealthCheck,
 };

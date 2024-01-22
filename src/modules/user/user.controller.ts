@@ -7,7 +7,7 @@ import { userSchema } from "@modules/user/user.schema";
 import { userService } from "@modules/user/user.service";
 import { logger } from "@src/server";
 
-export const getAllUsers: RequestHandler = async (_req, res, next) => {
+const getAllUsers: RequestHandler = async (_req, res, next) => {
   try {
     const users = await userService.findAll();
 
@@ -22,7 +22,7 @@ export const getAllUsers: RequestHandler = async (_req, res, next) => {
   }
 };
 
-export const getUserById: RequestHandler = async (req, res, next) => {
+const getUserById: RequestHandler = async (req, res, next) => {
   try {
     const { id } = req.params;
 
@@ -41,7 +41,7 @@ export const getUserById: RequestHandler = async (req, res, next) => {
   }
 };
 
-export const createUser: RequestHandler = async (req, res, next) => {
+const createUser: RequestHandler = async (req, res, next) => {
   try {
     const { name, email, age } = req.body;
 
@@ -66,4 +66,10 @@ export const createUser: RequestHandler = async (req, res, next) => {
     logger.error(`ERROR_CREATE_USER_CONTROLLER = ${error}`);
     next(error);
   }
+};
+
+export const userController = {
+  getAllUsers,
+  getUserById,
+  createUser,
 };
