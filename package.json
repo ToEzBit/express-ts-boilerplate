@@ -62,10 +62,10 @@
   },
   "lint-staged": {
     "**/*.{ts,js}": [
-      "npm run lint:fix",
-      "npm run format",
+      "pnpm lint:fix",
+      "pnpm run format",
       "git add"
     ],
-    "**/*.{ts,js,json,css,md}": "npm run format"
+    "**/*.{ts,js,json,css,md}": "pnpm run format"
   }
 }
