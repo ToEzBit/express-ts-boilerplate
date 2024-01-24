@@ -4,14 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf build && tsc",
-    "start": "npm run build && NODE_ENV=production tsx build/index.js",
+    "build": "rimraf build && tsc -p tsconfig.build.json && tsc-alias",
+    "start": "node build/index.js",
     "dev": "tsx watch --clear-screen=false src/index.ts | pnpm run pretty",
     "lint": "eslint 'src/**/*.{ts,js}'",
     "lint:fix": "eslint --fix --ext .ts,.js src/ tests/",
     "format": "prettier --write 'src/**/*.{ts,js,json}'",
     "check-format": "prettier --check 'src/**/*.{ts,js,json}'",
-    "prepare": "husky install",
+    "prepare": "node scripts/nodejs/prepare.js",
     "pretty": "pino-pretty",
     "test": "jest"
   },
@@ -54,6 +54,7 @@
     "rimraf": "^5.0.5",
     "supertest": "^6.3.4",
     "ts-jest": "^29.1.1",
+    "tsc-alias": "^1.8.8",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3"
   },

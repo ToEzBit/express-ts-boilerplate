@@ -1,29 +1,42 @@
 # Build stage
-FROM node:18-alpine as build-stage
+FROM node:20-alpine as build-stage
 
-RUN npm install pnpm@latest -g
+RUN npm install pnpm@8.7 -g
 
-WORKDIR /build
+WORKDIR /build-file
+
+COPY package.json  pnpm-lock.yaml ./
+COPY  ./scripts ./scripts/
+
+RUN pnpm install --frozen-lockfile 
 
 COPY . .
 
-RUN pnpm install --frozen-lockfile && pnpm store prune && pnpm run build
+RUN pnpm run build
+
+RUN pnpm store prune
+
 
 # Runtime stage
-FROM node:18-alpine 
+FROM node:20-alpine 
 
-ARG NODE_ENV=production
-ENV NODE_ENV $NODE_ENV
+ENV NODE_ENV=production \
+    PORT=8888 \
+    CORS="*" 
 
-RUN npm install pnpm@latest -g
+RUN npm install pnpm@8.7 -g
 
 WORKDIR  /opt/node_app
 
-COPY --from=build-stage /build/dist  ./dist
-COPY package.json  pnpm-lock.yaml ./ 
+COPY --from=build-stage ./build-file/build   ./build/
+COPY  ./scripts ./scripts/
 
-RUN pnpm install --frozen-lockfile && pnpm store prune
+COPY package.json  pnpm-lock.yaml ./
+COPY --from=build-stage ./build-file/package.json ./build-file/pnpm-lock.yaml ./
+
+RUN pnpm install --prod --frozen-lockfile 
+RUN  pnpm store prune
 
 EXPOSE 8888
-CMD [ "npm", "start"  ]
+CMD [ "pnpm", "start"  ]
 
